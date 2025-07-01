@@ -240,3 +240,16 @@ class PokeAPIClient:
             paginated_list = paginated_list[:limit]
         print(f"Paginated List: {paginated_list}")
         return paginated_list
+
+    def close(self):
+        """Closes the underlying requests Session."""
+        if self.session is not None:
+            self.session.close()
+
+    def __enter__(self):
+        """Enables usage of the client as a context manager."""
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """Ensures the requests Session is properly closed when exiting a context."""
+        self.close()

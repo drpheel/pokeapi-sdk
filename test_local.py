@@ -169,5 +169,24 @@ try:
 except requests.exceptions.HTTPError as e:
     print(f"An error occurred: {e}")
 
+print("\nTesting PokeAPIClient context manager...")
+try:
+    with PokeAPIClient() as ctx_client:
+        ditto_ctx = ctx_client.get_pokemon("ditto")
+        assert ditto_ctx["name"] == "ditto"
+        print(f"✅ Context manager fetch worked: {ditto_ctx['name'].capitalize()} (ID: {ditto_ctx['id']})")
+    print("✅ Client closed automatically after context manager exit.")
+except Exception as e:
+    print(f"❌ Context manager test failed: {e}")
+
+print("\nTesting explicit close() method...")
+try:
+    temp_client = PokeAPIClient()
+    temp_client.close()
+    # Even after closing, calling close again should be safe.
+    temp_client.close()
+    print("✅ close() executed without errors.")
+except Exception as e:
+    print(f"❌ close() method test failed: {e}")
 
 print("\n--- Local SDK test finished ---")

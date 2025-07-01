@@ -3,10 +3,10 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pokeapi-sdk-ameya"  # Change 'yourname' to be unique on PyPI
+name = "pokeapi-sdk-ameya"
 version = "0.1.0"
 authors = [
-  { name="Your Name", email="you@example.com" },
+  { name="Ameya Deshpande", email="ameyades94@gmail.com" },
 ]
 description = "A simple Python SDK for the PokeAPI."
 readme = "README.md"
