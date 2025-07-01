@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# IDE files
+.vscode/
+.idea/
