@@ -31,6 +31,15 @@ with PokeAPIClient() as client:
 
 ---
 
+## Design Decisions
+
+Though this SDK is pretty simple, there's a few decisions I made that are somewhat significant:
+
+- Have the client be a context manager, so you can set up and tear down resources in a `with` block.
+- When we load all pokemon, do it in a generator so we don't have to load all the pokemon in memory - there's a lot!
+
+---
+
 ## API Reference
 
 Every interaction starts by instantiating a `PokeAPIClient`. All network
