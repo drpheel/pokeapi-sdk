@@ -116,8 +116,10 @@ class PokeAPIClient:
         return paginated_list
 
     def get_all_pokemon_range(self, start: int, end: int) -> List[Dict[str, Any]]:
+        if start > end or start < 1 or end < 1:
+            raise ValueError("Start and end must be positive integers, and start must be less than end.")
         results = []
-        offset = start
+        offset = start - 1
 
         while offset < end:
             fetch_limit = min(100, end - offset)

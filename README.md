@@ -115,10 +115,10 @@ first_500_names = [p["name"] for _, p in zip(range(500), client.get_all_pokemon_
 ---
 
 ### `get_all_pokemon_range(start: int, end: int) -> List[Dict[str, Any]]`
-Fetch a list of Pokémon in the specified index range (using the Pokédex order, zero-based, end-exclusive).
+Fetch a list of Pokémon in the specified index range (using the Pokédex order).
 
 ```python
-# Get Pokémon from index 557 to 740 (inclusive of 557, exclusive of 741)
+# Get Pokémon from index 557 to 741
 pokemon_range = client.get_all_pokemon_range(557, 741)
 print([p["name"] for p in pokemon_range])
 ```
