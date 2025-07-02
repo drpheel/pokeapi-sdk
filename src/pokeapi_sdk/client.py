@@ -115,6 +115,22 @@ class PokeAPIClient:
             paginated_list = paginated_list[:limit]
         return paginated_list
 
+    def get_all_pokemon_range(self, start: int, end: int) -> List[Dict[str, Any]]:
+        results = []
+        offset = start
+
+        while offset < end:
+            fetch_limit = min(100, end - offset)
+            page = self.get_paginated_resource('pokemon', limit=fetch_limit, offset=offset)
+            page_results = page.get("results", [])
+            if not page_results:
+                break
+            results.extend(page_results)
+            if len(page_results) < fetch_limit:
+                break
+            offset += fetch_limit
+        return results
+
     def close(self):
         if self.session is not None:
             self.session.close()

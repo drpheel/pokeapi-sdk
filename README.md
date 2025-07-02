@@ -114,6 +114,24 @@ first_500_names = [p["name"] for _, p in zip(range(500), client.get_all_pokemon_
 
 ---
 
+### `get_all_pokemon_range(start: int, end: int) -> List[Dict[str, Any]]`
+Fetch a list of Pokémon in the specified index range (using the Pokédex order, zero-based, end-exclusive).
+
+```python
+# Get Pokémon from index 557 to 740 (inclusive of 557, exclusive of 741)
+pokemon_range = client.get_all_pokemon_range(557, 741)
+print([p["name"] for p in pokemon_range])
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `start`   | `int` | The starting index (inclusive, zero-based). |
+| `end`     | `int` | The ending index (exclusive). |
+
+Returns a list of Pokémon resource dicts, each containing at least `name` and `url`.
+
+---
+
 ### `find_pokemon_by_type(type_name: str) -> Iterator[Dict[str, Any]]`
 Yield Pokémon that belong to a specific elemental **type** (e.g. *fire*).
 

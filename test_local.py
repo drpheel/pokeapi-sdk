@@ -189,4 +189,16 @@ try:
 except Exception as e:
     print(f"❌ close() method test failed: {e}")
 
+print("\nTesting get_all_pokemon_range(557, 741)...")
+try:
+    pokemon_range = client.get_all_pokemon_range(557, 741)
+    assert len(pokemon_range) == 184
+    print("Pokémon in range 557-741:")
+    for i, p in enumerate(pokemon_range):
+        print(f"{i+1}. {p['name']}")
+    assert pokemon_range[0]['name'] == 'crustle'
+    print("✅ get_all_pokemon_range returned correct results.")
+except Exception as e:
+    print(f"❌ get_all_pokemon_range test failed: {e}")
+
 print("\n--- Local SDK test finished ---")
