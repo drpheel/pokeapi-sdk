@@ -41,7 +41,7 @@ class PokeAPIClient:
         params = {"limit": limit, "offset": offset}
         return self._make_request(resource_name, params=params)
 
-    def get_all_resource_generator(self, resource_name: str, limit: int = 100) -> Iterator[Dict[str, Any]]:
+    def get_all_resource_generator(self, resource_name: str, limit) -> Iterator[Dict[str, Any]]:
         offset = 0
         while True:
             page = self.get_paginated_resource(resource_name, limit=limit, offset=offset)
@@ -52,8 +52,8 @@ class PokeAPIClient:
                 yield item
             offset += limit
             
-    def get_all_pokemon_generator(self) -> Iterator[Dict[str, Any]]:
-        return self.get_all_resource_generator("pokemon")
+    def get_all_pokemon_generator(self, limit: int = 100) -> Iterator[Dict[str, Any]]:
+        return self.get_all_resource_generator("pokemon", limit=limit)
         
     def find_pokemon_by_type(self, type_name: str) -> Iterator[Dict[str, Any]]:
         type_data = self._make_request(f"type/{type_name.lower()}")
